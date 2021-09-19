@@ -14,4 +14,5 @@ config = json.loads(invoke.run(f"AWS_PROFILE=figarocorso sops -d {CONFIG_FILE} |
 gh = Github(config["github_token"])
 repo = gh.get_repo(REPO)
 for pr in repo.get_pulls(state='open', sort='created', base='staging'):
-    print(pr.title)
+    if pr.user.login in config["team"]:
+        print(f"{pr.title} [{pr.user.login}]")
