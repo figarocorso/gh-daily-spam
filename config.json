@@ -1,0 +1,22 @@
+{
+	"github_token": "ENC[AES256_GCM,data:fW+BAVQiBn9Ij+3g/FmXDZ0IN0YGwzTvCq51QNpWAw+1uyYku31PRg==,iv:RGlDhdFzRXQEv9+IJlFAXrcp3abHTgCi+1KScwAA0Xc=,tag:c2KCXknhSeRFKB4Fp0iArQ==,type:str]",
+	"sops": {
+		"kms": [
+			{
+				"arn": "arn:aws:kms:us-east-1:658610993921:key/38c3fba4-d17c-4822-b56e-fab67a184ef8",
+				"created_at": "2021-07-10T21:30:55Z",
+				"enc": "AQICAHhxfufkrQ3BdZD3V57JlFFNiMBqVxMttmfOw/hznnevsQFzEbJ3lBlvzy+AYTpvJNEsAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMA4aGHDa5Yw176HSOAgEQgDvfD8Lcf9dr1Jzu8k3TbYiFpO4uKQDd5K7T7OQWsb0tQFz6vxQwI0flJsh+0eiT/O3GEHXIIsZX7vxkDQ==",
+				"aws_profile": ""
+			}
+		],
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": null,
+		"lastmodified": "2021-07-10T21:30:55Z",
+		"mac": "ENC[AES256_GCM,data:o+UOy5sjzjuFFIpn6NUXeux2KIjfZBbc8bcgqCBRIFX2T4/ztxHrFMutb96nBx/uLq0gJScTv5giddC/puBBR9xUs8B/F6npiPOm5PZLLacfxV/34jgAyevTl3kqS5Ib6/tYhAkvtsfLeTFLnjoNMa4cwxn2azzJVOFwd0v4vto=,iv:HKRF6Fky9O8McaBjDFzW83H4yUzE0XHisn1bV0mRy3U=,tag:jQvt7WbeF2NqjXdk3s4eLw==,type:str]",
+		"pgp": null,
+		"unencrypted_suffix": "_unencrypted",
+		"version": "3.7.1"
+	}
+}
