@@ -1,5 +1,4 @@
 from github import Github
-from invoke import Context
 
 import json
 import os
@@ -11,10 +10,9 @@ REPO = "draios/automation"
 ME = "figarocorso"
 APPROVED = "APPROVED"
 
-invoke = Context()
-
-config = json.loads(invoke.run(f"AWS_PROFILE=figarocorso sops -d {CONFIG_FILE} | jq -c",
-                               hide=True, warn=True, echo=False).stdout)
+config = {}
+with open(CONFIG_FILE, "r") as f:
+    config = json.load(f)
 
 
 def main():

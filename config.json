@@ -1,28 +1,7 @@
 {
-	"github_token": "ENC[AES256_GCM,data:MDoGdrjgGfzjs4kmbs9QVlVmuUikbOvMx5lwWBe10quE+upD2jA7DA==,iv:EtUM745rm76fXF68kDTAaBsmMl8aubimKeg7COtBvVE=,tag:Dqa0riONBziNnQX116p9oA==,type:str]",
+	"github_token": "<your-GH-token>",
 	"team": [
-		"ENC[AES256_GCM,data:uMQRrvs=,iv:H7pQ4Hez+3oCfILbS49FLSxA4Qyp1El1sd1o0QT5aZo=,tag:i0DWAvNxgfP40jNKJlO15Q==,type:str]",
-		"ENC[AES256_GCM,data:VvYiIPbaGMFQx0E=,iv:eFhyZLtmRUy+inV887Z92dS22rwqsGO+eBEUSP6kE9I=,tag:aXYl9M34HLGn9yN+tcJv7Q==,type:str]",
-		"ENC[AES256_GCM,data:02FsUIUZpQ==,iv:cf/PqCLP8d+wI4VLy4Dsv5jEgmrXktFOYRQN4gBmo78=,tag:33DImKBQh+idl6jISLVc9w==,type:str]",
-		"ENC[AES256_GCM,data:t44kB5l0NnvW/G4L,iv:OS4bo3/eMrfsl3K+GlixmDnIqaXvALhJq/EZkSkiaIA=,tag:wkucw9mj1VvsWUr9VKfezg==,type:str]"
-	],
-	"sops": {
-		"kms": [
-			{
-				"arn": "arn:aws:kms:us-east-1:658610993921:key/38c3fba4-d17c-4822-b56e-fab67a184ef8",
-				"created_at": "2021-09-19T15:12:52Z",
-				"enc": "AQICAHhxfufkrQ3BdZD3V57JlFFNiMBqVxMttmfOw/hznnevsQFwTWME1uO4ttdTyxu9WFC1AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQME7n1jbx3sTigcLldAgEQgDtgNvBSe1vFrCk+MLKI3JFM2RPBAZNtJsNScKCeUcxFnSzMkRtsQ47MSyzfvT19+KR5HKj1tLsRZLsfFQ==",
-				"aws_profile": ""
-			}
-		],
-		"gcp_kms": null,
-		"azure_kv": null,
-		"hc_vault": null,
-		"age": null,
-		"lastmodified": "2021-09-19T15:12:52Z",
-		"mac": "ENC[AES256_GCM,data:HVQl/pmNh+zt7g3EYNmZiDNQrWofku4+jb0/+wPuEGvir1E9ng10Ilk1XfUUnfhYsTTZVLR42rA31ieOWmQjExeOU6e3vmDZ7sXLgocnNYFfhKH2ThFSZBRsvR472GCtpO6OTPufOIfQ+gwEhW7oAgkJfi0Px0Fxx74nkWrSZAY=,iv:GORZOTUp36NEqV4y1rsMihs5s0IbOH9XAiqPkfY8N6Y=,tag:yPWbPVDoH5HvMfsoD0KiYA==,type:str]",
-		"pgp": null,
-		"unencrypted_suffix": "_unencrypted",
-		"version": "3.7.1"
-	}
+		"team-member-1",
+		"team-member-2"
+	]
 }
