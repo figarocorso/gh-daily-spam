@@ -1,23 +1,20 @@
+from .config import Config
+
 from github import Github
 
-import json
 import webbrowser
 
 REPO = "draios/automation"
 ME = "figarocorso"
 APPROVED = "APPROVED"
-CONFIG_FILE = "config.json"
-
-# print("\n".join([f"{x.created_at} - {x.title}" for x in repo.get_pulls(state="closed", sort="created", direction="desc", base="staging").get_page(0)]))
-config = {}
-with open(CONFIG_FILE, "r") as f:
-    config = json.load(f)
 
 
 class PullRequests:
     def __init__(self):
         self.prs = []
-        self.repo = Github(config["github_token"]).get_repo(REPO)
+        self.selected = None
+        self.config = Config()
+        self.repo = Github(self.config.github_token).get_repo(REPO)
 
     def retrieve_open_by_team(self):
         self.prs = [pr for pr in self.repo.get_pulls(state='open', sort='created', base='staging')
@@ -40,4 +37,4 @@ class PullRequests:
             print(f"[{index + 1}] {pr.title} [{pr.user.login}]")
 
     def open(self, pr_number):
-        webbrowser.open_new_tab(self.repo.get_pull(self.prs[pr_number -1].number).html_url)
+        webbrowser.open_new_tab(self.repo.get_pull(self.prs[pr_number - 1].number).html_url)
