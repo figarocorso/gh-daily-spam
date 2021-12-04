@@ -12,3 +12,7 @@ class Config:
     @property
     def github_token(self):
         return self.config.get("github_token")
+
+    @property
+    def team(self):
+        return self.config.get("team")

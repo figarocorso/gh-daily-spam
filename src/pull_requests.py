@@ -18,12 +18,13 @@ class PullRequests:
 
     def retrieve_open_by_team(self):
         self.prs = [pr for pr in self.repo.get_pulls(state='open', sort='created', base='staging')
-                    if True] #pr.user.login in config["team"] and not self.is_already_reviewed(pr)]
+                    # if True]
+                    if pr.user.login in self.config.team and not self.is_already_reviewed(pr)]
 
     def is_already_reviewed(self, pr):
         for review in reversed([review for review in pr.get_reviews()]):
-            if review.user.login == ME:
-                return review.state == APPROVED
+            if review.user.login == ME and review.state == APPROVED:
+                return True
         return False
 
     def select(self, position):
