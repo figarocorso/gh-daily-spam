@@ -12,7 +12,7 @@ APPROVED = "APPROVED"
 class PullRequests:
     def __init__(self):
         self.prs = []
-        self.selected = None
+        self.selected_number = None
         self.config = Config()
         self.repo = Github(self.config.github_token).get_repo(REPO)
 
@@ -26,15 +26,35 @@ class PullRequests:
                 return review.state == APPROVED
         return False
 
+    def select(self, position):
+        self.selected_number = position - 1
+
+    @property
+    def selected_pr(self):
+        if self.selected_number is None:
+            raise "Ooops! There was no selected PR"
+
+        return self.prs[self.selected_number]
+
     def add(self, pr):
         self.prs.append(pr)
 
-    def print(self):
+    def print_prs(self):
         if not self.prs:
             print("There are no PRs matching your filter")
 
         for index, pr in enumerate(self.prs):
             print(f"[{index + 1}] {pr.title} [{pr.user.login}]")
 
-    def open(self, pr_number):
-        webbrowser.open_new_tab(self.repo.get_pull(self.prs[pr_number - 1].number).html_url)
+    def print_selected(self):
+        pr = self.selected_pr
+        print(f"\n[{pr.number}] {pr.title} [{pr.user.login}]")
+
+    def open_selected(self):
+        webbrowser.open_new_tab(self.repo.get_pull(self.selected_pr.number).html_url)
+
+    def approve_selected(self):
+        pull = self.repo.get_pull(self.selected_pr.number)
+        event = "COMMENT" if pull.state == "open" else "APPROVE"
+        body = ":+1:" if pull.state == "open" else "LGTM"
+        pull.create_review(body=body, event=event)
