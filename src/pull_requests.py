@@ -31,6 +31,6 @@ class PullRequests:
 
     def add_prs_from_filter(self, pr_filter):
         prs = getattr(self.filter_methods, pr_filter.method)()
-        for pr in prs:
+        for pr in [pr for pr in prs if not pr.draft]:
             if pr.number not in [pull_request.number for pull_request in self.prs]:
                 self.prs.append(PullRequest(pr, pr_filter, self.repo))
