@@ -1,4 +1,5 @@
 {
+    "me": "<your-GH-username>",
 	"github_token": "<your-GH-token>",
 	"team": [
 		"team-member-1",

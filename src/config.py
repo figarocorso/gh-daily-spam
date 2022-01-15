@@ -16,3 +16,7 @@ class Config:
     @property
     def team(self):
         return self.config.get("team")
+
+    @property
+    def me(self):
+        return self.config.get("me")

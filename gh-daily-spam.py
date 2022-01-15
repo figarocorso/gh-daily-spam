@@ -5,35 +5,46 @@ import os
 
 def main():
     prs = PullRequests()
-    while(True):
+    while prs.number_of_prs_to_be_reviewed:
         os.system("clear")
-
-        prs.print_prs()
-
-        pr_number = get_pr_number_from_user()
-        if pr_number == "0":
-            continue
-
-        operate_with_pr(prs, pr_number)
+        print(f"You still need to review {prs.number_of_prs_to_be_reviewed} PRs\n")
+        pr = prs.pop_first_pr()
+        operate_with_pr(pr)
 
 
-def get_pr_number_from_user():
-    pr_number = custom_input("\nPR number (0: refresh): ")
+def operate_with_pr(pr):
+    print(pr)
+    opened = open_in_browser_workflow(pr)
+    if not opened:
+        return
+    approve_workflow(pr)
 
-    if not pr_number:
-        pr_number = "1"
 
-    return int(pr_number)
+def open_in_browser_workflow(pr):
+    should_open = custom_input("\nShould open in browser? (Y/n): ")
+    should_open = not should_open or should_open.lower() == "y"
+    if should_open:
+        pr.open_in_browser()
+    return should_open
 
 
-def operate_with_pr(prs, pr_number):
-    prs.select_pr(pr_number)
-    prs.open_selected()
-    prs.print_selected()
+def approve_workflow(pr):
+    action = custom_input("\n(A)pprove/(C)omment/(S)kip? (A/c/s): ")
+    action = action.lower() if action else "a"
 
-    should_approve = custom_input("\nShould approve? (Y/n): ")
-    should_approve = not should_approve or should_approve != "n"
-    prs.approve_selected()
+    if action == "s":
+        return
+
+    if action == "c":
+        message = custom_input("\nType custom message: ")
+        pr.comment(message)
+        return
+
+    if action == "a":
+        should_custom_message = custom_input("\nDo you want custom message (y/N): ")
+        should_custom_message = should_custom_message and should_custom_message.lower() == "y"
+        message = custom_input("\nType custom message: ") if should_custom_message else ""
+        pr.approve(message)
 
 
 def custom_input(message):
