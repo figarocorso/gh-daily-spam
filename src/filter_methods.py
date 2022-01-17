@@ -18,28 +18,37 @@ class FilterMethods:
 
     def retrieve_open_by_team(self):
         return [pr for pr in self.repo.get_pulls(state='open', sort='created', base='staging')
-                    if pr.user.login in self.config.team and self.pending_review(pr)]
+                if pr.user.login in self.config.team and self.pending_review(pr)]
 
     def retrieve_closed_by_team(self):
         return [pr for pr in self.repo.get_pulls(state="closed", sort="created", direction="desc",
-                                                     base="staging").get_page(0)
-                    if pr.user.login in self.config.team and self.pending_review(pr)]
+                                                 base="staging").get_page(0)
+                if pr.user.login in self.config.team and self.pending_review(pr)]
 
     def retrieve_open_at_onprem(self):
         return [pr for pr in self.repo.get_pulls(state='open', sort='created', base='staging')
-                    if "onprem" in [label.name for label in pr.labels] and self.pending_review(pr)]
+                if "onprem" in [label.name for label in pr.labels]
+                and self.pending_review(pr)
+                and not self.author_is_me(pr)]
 
     def retrieve_closed_at_onprem(self):
         return [pr for pr in self.repo.get_pulls(state="closed", sort="created", direction="desc",
-                                                     base="staging").get_page(0)
-                    if "onprem" in [label.name for label in pr.labels] and self.pending_review(pr)]
+                                                 base="staging").get_page(0)
+                if "onprem" in [label.name for label in pr.labels]
+                and self.pending_review(pr)
+                and not self.author_is_me(pr)]
 
     def retrieve_open_at_jenkins(self):
         return [pr for pr in self.repo.get_pulls(state='open', sort='created', base='staging')
-                    if "jenkins" in [label.name for label in pr.labels] and self.pending_review(pr)]
+                if "jenkins" in [label.name for label in pr.labels]
+                and self.pending_review(pr)
+                and not self.author_is_me(pr)]
 
     def pending_review(self, pr):
         for review in reversed([review for review in pr.get_reviews()]):
             if review.user.login == self.config.me:
                 return False
         return True
+
+    def author_is_me(self, pr):
+        return pr.user.login == self.config.me
