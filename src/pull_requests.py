@@ -2,9 +2,13 @@ from .config import Config
 from .filter_methods import FilterMethods
 from .pull_request import PullRequest
 
+from rich.console import Console
 from github import Github
 
 REPO = "draios/automation"
+
+
+console = Console()
 
 
 class PullRequests:
@@ -25,9 +29,10 @@ class PullRequests:
         return self.prs.pop(0)
 
     def retrieve_all_prs(self):
-        for pr_filter in self.filter_methods.default_filters:
-            print(f"Retrieving: {pr_filter.description}")
-            self.add_prs_from_filter(pr_filter)
+        with console.status("[bold green]Retrieving PRs...") as status:
+            for pr_filter in self.filter_methods.default_filters:
+                console.print(f"Retrieving: {pr_filter.description}", style="magenta")
+                self.add_prs_from_filter(pr_filter)
 
     def add_prs_from_filter(self, pr_filter):
         prs = getattr(self.filter_methods, pr_filter.method)()
