@@ -12,7 +12,11 @@ class PullRequest:
         self.repo = repo
 
     def __str__(self):
-        return f"{self.pr_filter.description}\n\t[{self.pr.number}] {self.pr.title} [{self.pr.user.login}]"
+        message = f"[bold cyan]{self.pr_filter.description}[/bold cyan]\n"
+        message += f"\t[red on white][{self.pr.number}][/red on white]"
+        message += f" [bold yellow]{self.pr.title}[/bold yellow]"
+        message += f" [bold magenta][{self.pr.user.login}][/bold magenta]"
+        return message
 
     @property
     def full_pr(self):

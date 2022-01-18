@@ -29,7 +29,7 @@ class PullRequests:
         return self.prs.pop(0)
 
     def retrieve_all_prs(self):
-        with console.status("[bold green]Retrieving PRs...") as status:
+        with console.status("[bold green]Retrieving PRs..."):
             for pr_filter in self.filter_methods.default_filters:
                 console.print(f"Retrieving: {pr_filter.description}", style="magenta")
                 self.add_prs_from_filter(pr_filter)
