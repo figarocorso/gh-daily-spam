@@ -1,8 +1,8 @@
 {
     "me": "<your-GH-username>",
-	"github_token": "<your-GH-token>",
-	"team": [
-		"team-member-1",
-		"team-member-2"
-	]
+    "github_token": "<your-GH-token>",
+    "team": [
+        "team-member-1",
+        "team-member-2"
+    ]
 }
