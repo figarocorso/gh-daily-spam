@@ -1,6 +1,6 @@
 import webbrowser
 
-APPROVED = "APPROVED"
+APPROVED = "APPROVE"
 COMMENT = "COMMENT"
 
 
