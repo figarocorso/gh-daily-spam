@@ -20,6 +20,10 @@ python gh-daily-spam.py
 
 You can `<CONTROL>+c` at any time, CLI should exit, most of the times, in a exception-less way.
 
+![image](https://user-images.githubusercontent.com/2786651/150680280-b5865649-9d64-4a2d-b29f-a07e5e7964d3.png)
+
+![image](https://user-images.githubusercontent.com/2786651/150680371-32dbf572-7533-4c89-8417-f36cb4e4e23e.png)
+
 ### Current workflow
 
 * Tool retrieves PRs from the last week (depending on filters available)
