@@ -20,3 +20,11 @@ class Config:
     @property
     def me(self):
         return self.config.get("me")
+
+    @property
+    def default_open_pr_message(self):
+        return self.config.get("messages").get("open_pr")
+
+    @property
+    def default_closed_pr_message(self):
+        return self.config.get("messages").get("closed_pr")

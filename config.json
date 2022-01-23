@@ -1,4 +1,8 @@
 {
+    "messages": {
+        "open_pr": "LGTM",
+        "closed_pr": "Quick review, LGTM"
+    },
     "me": "<your-GH-username>",
     "github_token": "<your-GH-token>",
     "team": [

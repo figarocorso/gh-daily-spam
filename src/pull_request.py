@@ -1,6 +1,8 @@
+from .config import Config
+
 import webbrowser
 
-APPROVED = "APPROVE"
+APPROVE = "APPROVE"
 COMMENT = "COMMENT"
 
 
@@ -10,6 +12,7 @@ class PullRequest:
         self._full_pr = None
         self.pr_filter = pr_filter
         self.repo = repo
+        self.config = Config()
 
     def __str__(self):
         message = f"[bold cyan]{self.pr_filter.description}[/bold cyan]\n"
@@ -33,12 +36,16 @@ class PullRequest:
         webbrowser.open_new_tab(self.full_pr.html_url)
 
     def approve(self, body=""):
-        event = APPROVED if self.full_pr.state == "open" else COMMENT
+        event = APPROVE if self.full_pr.state == "open" else COMMENT
         self._create_review(event, body)
 
     def comment(self, body=""):
         self._create_review(COMMENT, body)
 
     def _create_review(self, event, body=""):
-        body = body if body else "Quick review, LGTM"
+        if not body:
+            body = self.config.default_closed_pr_message
+            if self.full_pr.state == "open":
+                body = self.config.default_open_pr_message
+
         self.full_pr.create_review(body=body, event=event)
