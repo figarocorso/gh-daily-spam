@@ -25,9 +25,9 @@ class FilterMethods:
     def default_filters(self):
         return [
             Filter("retrieve_open_by_team", "Opened PRs by team not yet reviewed"),
-            Filter("retrieve_closed_by_team", "Closed PRs by team not yet reviewed"),
+            Filter("retrieve_merged_by_team", "Closed PRs by team not yet reviewed"),
             Filter("retrieve_open_at_onprem", "Opened PRs at onprem folder not yet reviewed"),
-            Filter("retrieve_closed_at_onprem", "Closed PRs at onprem folder not yet reviewed"),
+            Filter("retrieve_merged_at_onprem", "Closed PRs at onprem folder not yet reviewed"),
             Filter("retrieve_open_at_jenkins", "Opened PRs at jenkins folder not yet reviewed"),
         ]
 
@@ -35,19 +35,19 @@ class FilterMethods:
         return [pr for pr in self.open_prs
                 if pr.user.login in self.config.team and self.pending_review(pr)]
 
-    def retrieve_closed_by_team(self):
+    def retrieve_merged_by_team(self):
         return [pr for pr in self.closed_prs
-                if pr.user.login in self.config.team and self.pending_review(pr)]
+                if pr.user.login in self.config.team and self.pending_review(pr) and pr.merged]
 
     def retrieve_open_at_onprem(self):
         return [pr for pr in self.open_prs
                 if "onprem" in [label.name for label in pr.labels] and self.pending_review(pr)
                 and not self.author_is_me(pr)]
 
-    def retrieve_closed_at_onprem(self):
+    def retrieve_merged_at_onprem(self):
         return [pr for pr in self.closed_prs
                 if "onprem" in [label.name for label in pr.labels] and self.pending_review(pr)
-                and not self.author_is_me(pr)]
+                and not self.author_is_me(pr) and pr.merged]
 
     def retrieve_open_at_jenkins(self):
         return [pr for pr in self.open_prs
